@@ -16,7 +16,7 @@ class TestReview:
         r = Review(comment='great product!')
         assert r.comment == 'great product!'
 
-    def test_can_be_saved_to_database(self):
+    def test_can_be_saved_to_database(self, setup_database):
         '''can be added to a transaction and committed to review table with comment column.'''
         with app.app_context():
             assert 'comment' in Review.__table__.columns
@@ -26,7 +26,7 @@ class TestReview:
             assert hasattr(r, 'id')
             assert db.session.query(Review).filter_by(id=r.id).first()
 
-    def test_is_related_to_customer_and_item(self):
+    def test_is_related_to_customer_and_item(self, setup_database):
         '''has foreign keys and relationships'''
         with app.app_context():
             assert 'customer_id' in Review.__table__.columns

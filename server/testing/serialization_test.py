@@ -5,7 +5,7 @@ from server.models import Customer, Item, Review
 class TestSerialization:
     '''models in models.py'''
 
-    def test_customer_is_serializable(self):
+    def test_customer_is_serializable(self, setup_database):
         '''customer is serializable'''
         with app.app_context():
             c = Customer(name='Phil')
@@ -21,7 +21,7 @@ class TestSerialization:
             assert customer_dict['reviews']
             assert 'customer' not in customer_dict['reviews']
 
-    def test_item_is_serializable(self):
+    def test_item_is_serializable(self, setup_database):
         '''item is serializable'''
         with app.app_context():
             i = Item(name='Insulated Mug', price=9.99)
@@ -38,7 +38,7 @@ class TestSerialization:
             assert item_dict['reviews']
             assert 'item' not in item_dict['reviews']
 
-    def test_review_is_serializable(self):
+    def test_review_is_serializable(self, setup_database):
         '''review is serializable'''
         with app.app_context():
             c = Customer()

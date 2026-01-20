@@ -5,7 +5,7 @@ from server.models import Customer, Item, Review
 class TestAssociationProxy:
     '''Customer in models.py'''
 
-    def test_has_association_proxy(self):
+    def test_has_association_proxy(self, setup_database):
         '''has association proxy to items'''
         with app.app_context():
             c = Customer()
